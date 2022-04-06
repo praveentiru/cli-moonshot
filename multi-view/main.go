@@ -66,9 +66,20 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 func (m model) View() string {
 
 	lv := m.todoView()
-	rv := "This is just a test run to see how two views are joined"
+	rv := `This is just a test run to see how two views are joined. 
+This is just a test run to see how two views are joined. 
+This is just a test run to see how two views are joined. 
+This is just a test run to see how two views are joined. 
+This is just a test run to see how two views are joined. 
+This is just a test run to see how two views are joined. 
+This is just a test run to see how two views are joined`
+	rv = lipgloss.NewStyle().
+		BorderStyle(lipgloss.DoubleBorder()).
+		BorderForeground(lipgloss.Color("228")).
+		Margin(1, 1, 1, 1).
+		Render(rv)
 
-	s := lipgloss.JoinHorizontal(lipgloss.Center, lv, rv)
+	s := lipgloss.JoinHorizontal(lipgloss.Top, lv, rv)
 	return s
 }
 
@@ -99,7 +110,7 @@ func (m model) todoView() string {
 	s = lipgloss.NewStyle().
 		BorderStyle(lipgloss.DoubleBorder()).
 		BorderForeground(lipgloss.Color("228")).
-		MarginRight(5).
+		Margin(1, 1, 1, 1).
 		Render(s)
 
 	return s
